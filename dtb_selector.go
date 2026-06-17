@@ -433,7 +433,7 @@ var Brands = []string{
 	"Powkiddy",
 	"Clone R36s",
 	"GameConsole",
-	"SaySouce R36s",
+	"SoySauce R36s",
 	"Diium(SZDiiER)",
 	"XiFan HandHelds",
 	"Other",
