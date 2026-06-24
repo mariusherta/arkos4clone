@@ -172,15 +172,15 @@ Non-Windows users, see [Manual Configuration](#manual-configuration).
 | Mini40 | `720P` | User Select | `consoles/mini40/` | Thanks to XiFan |
 | R36Max | `720P` | User Select | `consoles/r36max/` | Thanks to XiFan |
 | R36Max2 | `768P` | User Select | `consoles/r36max2/` | Thanks to XiFan |
-| XF45V | `768P` | User Select | `consoles/r36max2/` | Thanks to XiFan |
-| DC45V | `768P` | User Select | `consoles/r36max2/` | Thanks to XiFan |
-| RF45V | `768P` | User Select | `consoles/r36max2/` | Thanks to XiFan |
+| XF45V | `768P` | User Select | `consoles/xf45v/` | Thanks to XiFan |
+| DC45V | `768P` | User Select | `consoles/dc45v/` | Thanks to XiFan |
+| RF45V | `768P` | User Select | `consoles/rf45v/` | Thanks to XiFan |
 | R36Pro | `480P` | User Select | `consoles/r36pro/` | Thanks to XiFan |
 | XF28 | `480P-1` | User Select | `consoles/xf28/` | Thanks to XiFan |
 | XF35H | `480P` | User Select | `consoles/xf35h/` | Thanks to XiFan |
-| RF35H | `480P` | User Select | `consoles/xf35h/` | Thanks to XiFan |
+| RF35H | `480P` | User Select | `consoles/rf35h/` | Thanks to XiFan |
 | XF40H | `720P` | User Select | `consoles/xf40h/` | Thanks to XiFan |
-| RF40H | `720P` | User Select | `consoles/xf40h/` | Thanks to XiFan |
+| RF40H | `720P` | User Select | `consoles/rf40h/` | Thanks to XiFan |
 | DC35V | `480P` | User Select | `consoles/dc35v/` | Thanks to XiFan |
 | DC40V | `720P` | User Select | `consoles/dc40v/` | Thanks to XiFan |
 
@@ -190,6 +190,7 @@ Non-Windows users, see [Manual Configuration](#manual-configuration).
 |--------|------|--------|--------------|-------|
 | HG36 (HG3506) | `480P` | User Select | `consoles/hg36/` | |
 | R36Ultra | `720P` | User Select | `consoles/r36ultra/` | Thanks to Mr.Li |
+| R36UltraX | `7268P` | User Select | `consoles/r36ultrax/` | Thanks to Mr.Li |
 | RX6H | `480P` | User Select | `consoles/rx6h/` | Thanks to Mr.Yin |
 | XGB36 (G26) | `480P` | User Select | `consoles/xgb36/` | |
 | T16MAX | `720P` | User Select | `consoles/t16max/` | |
