@@ -2412,6 +2412,11 @@
 		<extension>.jar .JAR</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/freej2me.sh %EMULATOR% %CORE% %ROM%; sudo perfnorm</command>
 		<emulators>
+			<emulator name="freej2me-sa">
+				<cores>
+					<core>freej2me</core>
+				</cores>
+			</emulator>
 			<emulator name="retroarch">
 				<cores>
 					<core>freej2me</core>
@@ -2517,6 +2522,27 @@
 		<manufacturer>Tandy</manufacturer>
 		<release>1980</release>
 		<hardware>computer</hardware>
+	</system>
+	<system>
+		<name>gametank</name>
+		<fullname>GameTank</fullname>
+		<path>/roms/gametank/</path>
+		<extension>.7z .7Z .gtr .GTR .zip .ZIP</extension>
+		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/gametank.sh %EMULATOR% %CORE% %ROM%; sudo perfnorm</command>
+		<emulators>
+			<emulator name="standalone">
+			</emulator>
+			<emulator name="retroarch">
+				<cores>
+					<core>libgametank</core>
+				</cores>
+			</emulator>
+		</emulators>
+		<platform>gametank</platform>
+		<theme>gametank</theme>
+		<manufacturer>GameTank</manufacturer>
+		<release>2020</release>
+		<hardware>console</hardware>
 	</system>
 	<system>
 		<name>wasm-4</name>
@@ -4937,7 +4963,7 @@
 	</system>
 	<system>
 		<name>native32</name>
-		<fullname>native32</fullname>
+		<fullname>native32 [SD2]</fullname>
 		<path>/roms2/native32/</path>
 		<extension>.smf .sgm .ssl .zip</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/retroarch -L /home/ark/.config/retroarch/cores/native32emu_libretro.so %ROM%; sudo perfnorm</command>
@@ -4949,7 +4975,7 @@
 	</system>
 	<system>
 		<name>bbk</name>
-		<fullname>BBK</fullname>
+		<fullname>BBK [SD2]</fullname>
 		<path>/roms2/bbk/</path>
 		<extension>.gam .GAM</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/retroarch -L /home/ark/.config/retroarch/cores/bbkemu_libretro.so %ROM%; sudo perfnorm</command>
@@ -5038,6 +5064,11 @@
 		<extension>.jar .JAR</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/freej2me.sh %EMULATOR% %CORE% %ROM%; sudo perfnorm</command>
 		<emulators>
+			<emulator name="freej2me-sa">
+				<cores>
+					<core>freej2me</core>
+				</cores>
+			</emulator>
 			<emulator name="retroarch">
 				<cores>
 					<core>freej2me</core>
@@ -5143,6 +5174,27 @@
 		<manufacturer>Tandy</manufacturer>
 		<release>1980</release>
 		<hardware>computer</hardware>
+	</system>
+	<system>
+		<name>gametank</name>
+		<fullname>GameTank [SD2]</fullname>
+		<path>/roms2/gametank/</path>
+		<extension>.7z .7Z .gtr .GTR .zip .ZIP</extension>
+		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/gametank.sh %EMULATOR% %CORE% %ROM%; sudo perfnorm</command>
+		<emulators>
+			<emulator name="standalone">
+			</emulator>
+			<emulator name="retroarch">
+				<cores>
+					<core>libgametank</core>
+				</cores>
+			</emulator>
+		</emulators>
+		<platform>gametank</platform>
+		<theme>gametank</theme>
+		<manufacturer>GameTank</manufacturer>
+		<release>2020</release>
+		<hardware>console</hardware>
 	</system>
 	<system>
 		<name>wasm-4</name>

@@ -6,7 +6,7 @@ corename = "BBKEmu"
 categories = "Emulator"
 license = "BSD-3-Clause"
 permissions = ""
-display_version = "0.1.0"
+display_version = "bc66530"
 
 # Hardware Information
 manufacturer = "BBK Electronics"

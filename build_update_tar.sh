@@ -362,12 +362,15 @@ else
   cp -f ./replace_file/naomi.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/saturn.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/n64.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
+  cp -f ./replace_file/gametank.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
+  cp -f ./replace_file/gametankkeydemon.py "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/pico8.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/drastic.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/drastic_kk.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/choose_drastic_ver.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/choose_ons_ver.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/onscripter.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
+  cp -f ./replace_file/freej2me.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/mediaplayer.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
   cp -f ./replace_file/get_last_played.sh "$PAYLOAD_ROOT/usr/local/bin/" 2>/dev/null || true
 
@@ -394,6 +397,7 @@ else
            "$PAYLOAD_ROOT/etc/emulationstation" \
            "$PAYLOAD_ROOT/usr/bin/emulationstation/resources/"
   cp -f ./mod_so/64/* "$PAYLOAD_ROOT/home/ark/.config/retroarch/cores/" 2>/dev/null || true
+  cp -f ./mod_so/arkos_64/* "$PAYLOAD_ROOT/home/ark/.config/retroarch/cores/" 2>/dev/null || true
   cp -f ./mod_so/32/* "$PAYLOAD_ROOT/home/ark/.config/retroarch32/cores/" 2>/dev/null || true
   cp -f ./replace_file/es_systems.cfg "$PAYLOAD_ROOT/etc/emulationstation/" 2>/dev/null || true
   cp -f ./replace_file/es_systems.cfg.dual "$PAYLOAD_ROOT/etc/emulationstation/" 2>/dev/null || true
@@ -414,6 +418,10 @@ else
   echo "== 添加 onscripter-sa =="
   mkdir -p "$PAYLOAD_ROOT/opt/onscripter"
   cp -a ./replace_file/onscripter/. "$PAYLOAD_ROOT/opt/onscripter/" 2>/dev/null || true
+
+  echo "== 添加 freej2me-sa =="
+  mkdir -p "$PAYLOAD_ROOT/opt/freej2mesa"
+  cp -a ./replace_file/freej2mesa/. "$PAYLOAD_ROOT/opt/freej2mesa/" 2>/dev/null || true
 
   echo "== 改用自适应分辨率 Retroarch 1.22.2 =="
   mkdir -p "$PAYLOAD_ROOT/opt/retroarch/bin/"
@@ -440,6 +448,10 @@ else
   mkdir -p "$PAYLOAD_ROOT/opt/flycastsa-2022"
   cp -a ./replace_file/flycastsa-2022/. "$PAYLOAD_ROOT/opt/flycastsa-2022/" 2>/dev/null || true
   rm -rf "$PAYLOAD_ROOT/opt/flycastsa-2022/patch" 2>/dev/null || true
+
+  echo "== 添加 gametank-sa =="
+  mkdir -p "$PAYLOAD_ROOT/opt/gametank"
+  cp -a ./replace_file/gametank/. "$PAYLOAD_ROOT/opt/gametank/" 2>/dev/null || true
 
   echo "== 注入 retrorun =="
   mkdir -p "$PAYLOAD_ROOT/usr/local/bin"
@@ -502,7 +514,7 @@ EOF
   meta_add "0777" "1002:1002" "/usr/lib/firmware/aic8800DC/*"
   meta_add "0777" "1002:1002" "/opt/351Files"
   meta_add "0777" "1002:1002" "/opt/351Files/*"
-  for f in atomiswave.sh dreamcast.sh naomi.sh saturn.sh n64.sh pico8.sh drastic.sh drastic_kk.sh choose_drastic_ver.sh mediaplayer.sh get_last_played.sh choose_ons_ver.sh onscripter.sh; do
+  for f in atomiswave.sh dreamcast.sh naomi.sh saturn.sh n64.sh gametankkeydemon.py pico8.sh drastic.sh drastic_kk.sh choose_drastic_ver.sh mediaplayer.sh get_last_played.sh choose_ons_ver.sh onscripter.sh freej2me.sh; do
     meta_add "0777" "1002:1002" "/usr/local/bin/$f"
   done
   meta_add "0777" "1002:1002" "/usr/local/bin/adckeys.py"
@@ -523,6 +535,8 @@ EOF
   meta_add "0777" "1002:1002" "/opt/drastic-kk/*"
   meta_add "0777" "1002:1002" "/opt/onscripter"
   meta_add "0777" "1002:1002" "/opt/onscripter/*"
+  meta_add "0777" "1002:1002" "/opt/freej2mesa"
+  meta_add "0777" "1002:1002" "/opt/freej2mesa/*"
   meta_add "0777" "1002:1002" "/opt/retroarch/bin/"
   meta_add "0777" "1002:1002" "/opt/retroarch/bin/*"
   meta_add "0777" "1002:1002" "/opt/ppsspp"

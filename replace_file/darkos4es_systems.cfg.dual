@@ -4949,7 +4949,7 @@
 	</system>
 	<system>
 		<name>native32</name>
-		<fullname>native32</fullname>
+		<fullname>native32 [SD2]</fullname>
 		<path>/roms2/native32/</path>
 		<extension>.smf .sgm .ssl .zip</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/retroarch -L /home/ark/.config/retroarch/cores/native32emu_libretro.so %ROM%; sudo perfnorm</command>
@@ -4961,7 +4961,7 @@
 	</system>
 	<system>
 		<name>bbk</name>
-		<fullname>BBK</fullname>
+		<fullname>BBK [SD2]</fullname>
 		<path>/roms2/bbk/</path>
 		<extension>.gam .GAM</extension>
 		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /usr/local/bin/retroarch -L /home/ark/.config/retroarch/cores/bbkemu_libretro.so %ROM%; sudo perfnorm</command>

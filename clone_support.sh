@@ -423,12 +423,15 @@ else
   safe sudo cp -f ./replace_file/naomi.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/saturn.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/n64.sh "$MOUNT_DIR/root/usr/local/bin/"
+  safe sudo cp -f ./replace_file/gametank.sh "$MOUNT_DIR/root/usr/local/bin/"
+  safe sudo cp -f ./replace_file/gametankkeydemon.py "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/pico8.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/drastic.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/drastic_kk.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/choose_drastic_ver.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/choose_ons_ver.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/onscripter.sh "$MOUNT_DIR/root/usr/local/bin/"
+  safe sudo cp -f ./replace_file/freej2me.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/mediaplayer.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo cp -f ./replace_file/get_last_played.sh "$MOUNT_DIR/root/usr/local/bin/"
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/atomiswave.sh" 2>/dev/null
@@ -436,12 +439,15 @@ else
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/naomi.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/saturn.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/n64.sh" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/gametank.sh" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/gametankkeydemon.py" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/pico8.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/drastic.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/drastic_kk.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/choose_drastic_ver.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/choose_ons_ver.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/onscripter.sh" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/freej2me.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/mediaplayer.sh" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/usr/local/bin/get_last_played.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/atomiswave.sh" 2>/dev/null
@@ -449,12 +455,15 @@ else
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/naomi.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/saturn.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/n64.sh" 2>/dev/null
+  safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/gametank.sh" 2>/dev/null
+  safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/gametankkeydemon.py" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/pico8.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/drastic.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/drastic_kk.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/choose_drastic_ver.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/choose_ons_ver.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/onscripter.sh" 2>/dev/null
+  safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/freej2me.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/mediaplayer.sh" 2>/dev/null
   safe sudo chmod 777 "$MOUNT_DIR/root/usr/local/bin/get_last_played.sh" 2>/dev/null
 
@@ -490,6 +499,7 @@ else
 
   echo "== 注入核心 =="
   safe sudo cp -f ./mod_so/64/* "$MOUNT_DIR/root/home/ark/.config/retroarch/cores/"
+  safe sudo cp -f ./mod_so/arkos_64/* "$MOUNT_DIR/root/home/ark/.config/retroarch/cores/"
   safe sudo cp -f ./mod_so/32/* "$MOUNT_DIR/root/home/ark/.config/retroarch32/cores/"
   safe sudo chown -R $CHOWN_USER $MOUNT_DIR/root/home/ark/.config/retroarch/cores/*
   safe sudo chown -R $CHOWN_USER $MOUNT_DIR/root/home/ark/.config/retroarch32/cores/*
@@ -534,6 +544,12 @@ else
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/onscripter" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/onscripter" 2>/dev/null
 
+  echo "== 添加 freej2me-sa =="
+  safe sudo mkdir -p "$MOUNT_DIR/root/opt/freej2mesa" 2>/dev/null
+  safe sudo cp -a ./replace_file/freej2mesa/. "$MOUNT_DIR/root/opt/freej2mesa/" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/freej2mesa" 2>/dev/null
+  safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/freej2mesa" 2>/dev/null
+
   echo "== 改用自适应分辨率 Retroarch 1.22.2 =="
   safe sudo cp -a ./replace_file/retroarch/retroarch "$MOUNT_DIR/root/opt/retroarch/bin/" 2>/dev/null
   safe sudo cp -a ./replace_file/retroarch/retroarch32 "$MOUNT_DIR/root/opt/retroarch/bin/" 2>/dev/null
@@ -562,6 +578,12 @@ else
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/flycastsa-2022" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/flycastsa-2022" 2>/dev/null
 
+  echo "== 添加 gametank-sa  =="
+  safe sudo mkdir -p "$MOUNT_DIR/root/opt/gametank" 2>/dev/null
+  safe sudo cp -a ./replace_file/gametank/. "$MOUNT_DIR/root/opt/gametank/" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/gametank" 2>/dev/null
+  safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/gametank" 2>/dev/null
+
   echo "== 处理 roms.tar =="
   if [ "$(stat -c%s $MOUNT_DIR/root/roms.tar 2>/dev/null || echo 0)" -le $((100*1024*1024)) ]; then
     echo "== 复制 roms.tar 出来操作 =="
@@ -571,6 +593,8 @@ else
     safe sudo mkdir -p "$WORK_DIR/tmproms/roms/hbmame"
     safe sudo mkdir -p "$WORK_DIR/tmproms/roms/native32"
     safe sudo mkdir -p "$WORK_DIR/tmproms/roms/bbk"
+    safe sudo mkdir -p "$WORK_DIR/tmproms/roms/gametank"
+    safe sudo mkdir -p "$WORK_DIR/tmproms/roms/pymo"
     tar -xf "$SCRIPT_DIR/zulu11.48.21-ca-jdk11.0.11-linux_aarch64.tar.gz" -C "$WORK_DIR/tmproms/roms/j2me"
     safe sudo mv "$WORK_DIR/tmproms/roms/j2me/zulu11.48.21-ca-jdk11.0.11-linux_aarch64" "$WORK_DIR/tmproms/roms/j2me/jdk"
     safe sudo chown -R root:root "$WORK_DIR/tmproms/roms/j2me/jdk"
@@ -584,7 +608,6 @@ else
     safe sudo chown -R $CHOWN_USER "$WORK_DIR/tmproms/roms/tools/PortMaster.sh"
     safe sudo chmod -R 777 "$WORK_DIR/tmproms/roms/tools/PortMaster"
     safe sudo chmod -R 777 "$WORK_DIR/tmproms/roms/tools/PortMaster.sh"
-    safe sudo mkdir -p "$WORK_DIR/tmproms/roms/pymo"
     echo "== 注入 pymo 主题 =="
     safe sudo cp -r ./replace_file/pymo/pymo "$MOUNT_DIR/root/tempthemes/es-theme-nes-box/"
     safe sudo chown -R root:root "$MOUNT_DIR/root/tempthemes/es-theme-nes-box/pymo"
