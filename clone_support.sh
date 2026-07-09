@@ -231,7 +231,7 @@ if [[ "$ARKOS_IMAGE_NAME" == *dArkOS* ]]; then
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/flycastsa-r7" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/flycastsa-r7" 2>/dev/null
 
-  echo "== 更新 yabasanshiro-sa =="
+  echo "== 更新和添加 yabasanshiro-sa =="
   safe sudo cp -a ./replace_file/yabasanshiro/. "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
@@ -614,7 +614,7 @@ else
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/rufflesa" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/rufflesa" 2>/dev/null
 
-  echo "== 更新 yabasanshiro-sa =="
+  echo "== 更新和添加 yabasanshiro-sa =="
   safe sudo cp -a ./replace_file/yabasanshiro/. "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
   safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null

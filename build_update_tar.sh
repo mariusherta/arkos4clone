@@ -201,7 +201,7 @@ if [[ "$ARKOS_IMAGE_NAME" == *dArkOS* ]]; then
   cp -a ./replace_file/flycastsa-r7/. "$PAYLOAD_ROOT/opt/flycastsa-r7/" 2>/dev/null || true
   rm -rf "$PAYLOAD_ROOT/opt/flycastsa-r7/patch" 2>/dev/null || true
 
-  echo "== 更新 yabasanshiro-sa =="
+  echo "== 更新和添加 yabasanshiro-sa =="
   mkdir -p "$PAYLOAD_ROOT/opt/yabasanshiro"
   rm -rf "$PAYLOAD_ROOT/opt/yabasanshiro/patch" 2>/dev/null || true
   cp -a ./replace_file/yabasanshiro/. "$PAYLOAD_ROOT/opt/yabasanshiro/" 2>/dev/null || true
@@ -494,7 +494,7 @@ else
   mkdir -p "$PAYLOAD_ROOT/home/ark/.quirks"
   cp -r ./replace_file/ogage "$PAYLOAD_ROOT/home/ark/.quirks/" 2>/dev/null || true
 
-  echo "== 更新 yabasanshiro-sa =="
+  echo "== 更新和添加 yabasanshiro-sa =="
   mkdir -p "$PAYLOAD_ROOT/opt/yabasanshiro"
   rm -rf "$PAYLOAD_ROOT/opt/yabasanshiro/patch" 2>/dev/null || true
   cp -a ./replace_file/yabasanshiro/. "$PAYLOAD_ROOT/opt/yabasanshiro/" 2>/dev/null || true

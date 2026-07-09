@@ -28,6 +28,11 @@ if [[ $1 == *"standalone"* ]]; then
   if [[ ! -d "/$directory/saturn/yabasanshiro" ]]; then
     mkdir /$directory/saturn/yabasanshiro
   fi
+  if [[ $1 == *"pi4"* ]]; then
+    YABA_BIN="./yabasanshiro-pi4"
+  else
+    YABA_BIN="./yabasanshiro"
+  fi
   cd /opt/yabasanshiro
   if [[ ! -f "input.cfg" ]]; then
     if [[ -f "keymapv2.json" ]]; then
@@ -36,7 +41,7 @@ if [[ $1 == *"standalone"* ]]; then
     cp -f /etc/emulationstation/es_input.cfg input.cfg
   fi
   sudo /opt/quitter/oga_controls yaba $param_device &
-  if [[ $1 == "standalone-bios" ]]; then
+  if [[ $1 == *"-bios"* ]]; then
     if [[ ! -f "/$directory/bios/saturn_bios.bin" ]]; then
       printf "\033c" >> /dev/tty1
       printf "\033[1;33m" >> /dev/tty1
@@ -46,10 +51,10 @@ if [[ $1 == *"standalone"* ]]; then
       sleep 10
       printf "\033[0m" >> /dev/tty1
     else
-      ./yabasanshiro -r 3 -i "$2" -b /$directory/bios/saturn_bios.bin
+      $YABA_BIN  -r 3 -i "$2" -b /$directory/bios/saturn_bios.bin
     fi
   else
-    ./yabasanshiro -r 3 -i "$2"
+    $YABA_BIN  -r 3 -i "$2"
   fi
   if [[ ! -z $(pidof oga_controls) ]]; then
     sudo kill -9 $(pidof oga_controls)
