@@ -69,6 +69,13 @@ endif()
 EOF
 ```
 
+**注意**: 如果 sysroot 中有 `/opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake`，需要备份并移除，否则会覆盖我们的配置：
+
+```bash
+sudo mv /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake \
+        /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake.bak
+```
+
 ## 工具链文件
 
 `aarch64-toolchain.cmake`：
@@ -108,13 +115,6 @@ set(CMAKE_SHARED_LINKER_FLAGS "-L/opt/sysroot/usr/lib/aarch64-linux-gnu -L/opt/s
 
 ## 编译选项
 
-### 编译器标志
-
-```
-CMAKE_C_FLAGS:   (由工具链自动设置)
-CMAKE_CXX_FLAGS: (由工具链自动设置)
-```
-
 ### CMake 选项
 
 | 选项 | 值 | 说明 |
@@ -143,6 +143,10 @@ sudo ln -sf /opt/sysroot/usr/include/aarch64-linux-gnu/sys  /opt/sysroot/usr/inc
 sudo ln -sf /opt/sysroot/usr/include/aarch64-linux-gnu/gnu  /opt/sysroot/usr/include/gnu
 sudo ln -sf /opt/sysroot/usr/include/aarch64-linux-gnu/asm  /opt/sysroot/usr/include/asm
 
+# 备份 sysroot 中的 SDL2 配置
+sudo mv /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake \
+        /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake.bak
+
 # 卸载镜像
 sudo umount /tmp/arkos-mount
 ```
@@ -166,18 +170,11 @@ endif()
 EOF
 ```
 
-**注意**: 如果 sysroot 中有 `/opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake`，需要备份并移除，否则会覆盖我们的配置：
-
-```bash
-sudo mv /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake \
-        /opt/sysroot/usr/lib/aarch64-linux-gnu/cmake/SDL2/sdl2-config.cmake.bak
-```
-
 ### 3. 应用补丁
 
 ```bash
 cd ~/flycast2022
-git apply flycast2022-aarch64-chinese-savestate.patch
+git apply flycast2022-aarch64-chinese-savestate-720x720.patch
 ```
 
 ### 4. 配置 CMake
@@ -245,9 +242,10 @@ build-aarch64/flycast
 
 ## 补丁内容
 
-`flycast2022-aarch64-chinese-savestate.patch` 包含：
+`flycast2022-aarch64-chinese-savestate-720x720.patch` 包含：
 
 1. **CMakeLists.txt** - 去掉直接链接 libGLESv2，去掉 cmake_policy CMP0026
+2. **core/rend/gles/gldraw.cpp** - 720x720 等比缩放居中显示，不裁剪画面
 3. **core/rend/gui.cpp** - 中文界面支持
 4. **core/serialize.cpp/h** - 存档状态向前兼容
 5. **core/hw/aica/sgc_if.cpp** - 音频修复
@@ -258,6 +256,43 @@ build-aarch64/flycast
 10. **core/hw/pvr/pvr.cpp** - PVR 修复
 11. **core/hw/pvr/spg.cpp** - SPG 修复
 12. **core/hw/sh4/sh4_cache.h** - SH4 缓存修复
+
+## 屏幕适配
+
+### 720x720 屏幕
+
+- 游戏画面 4:3 (640x480)
+- 等比缩放：`scale = 720/640 = 1.125`
+- 缩放后尺寸：720 x 540
+- 上下黑边：`(720-540)/2 = 90` 像素
+- **不裁剪，完整显示**
+
+### 1280x720 屏幕
+
+- 游戏画面 4:3 (640x480)
+- 等比缩放：`scale = 720/480 = 1.5`
+- 缩放后尺寸：960 x 720
+- 左右黑边：`(1280-960)/2 = 160` 像素
+- **不裁剪，完整显示**
+
+### 640x480 屏幕
+
+- 游戏画面 4:3 (640x480)
+- 完美填满，无黑边
+
+## 存档路径
+
+| 类型 | 路径 |
+|------|------|
+| 配置目录 | `~/.config/flycast/` |
+| 数据目录 | `~/.local/share/flycast/` |
+| 快速存档 | `~/.local/share/flycast/<游戏ID>.state<N>` |
+| 存档数据 | `~/.local/share/flycast/<游戏ID>.nvm` (VMU) |
+
+### 快速存档快捷键
+
+- `Shift+F1`~`F9` - 保存到槽位 1-9
+- `F1`~`F9` - 从槽位 1-9 加载
 
 ## 目录结构
 
@@ -270,10 +305,12 @@ flycast2022/
 │   └── flycast                      # 编译产物
 ├── build-arm32/                     # arm32 构建目录 (备用)
 ├── core/                            # 源代码
-│   ├── rend/gui.cpp                 # GUI (中文支持)
+│   ├── rend/
+│   │   ├── gles/gldraw.cpp          # 720x720 适配
+│   │   └── gui.cpp                  # 中文支持
 │   ├── serialize.cpp                # 存档序列化
 │   └── hw/                          # 硬件模拟
-├── flycast2022-aarch64-chinese-savestate.patch  # 合并补丁
+├── flycast2022-aarch64-chinese-savestate-720x720.patch  # 补丁
 └── BUILD_FLYCAST2022.md             # 本文档
 ```
 
@@ -305,6 +342,10 @@ A: 这是 ARM32 版本的 VIXL bug，使用 aarch64 版本可解决。
 ### Q: 运行时找不到 libGLESv2.so
 
 A: 确保目标设备有 Mali GPU 驱动，库路径在 `/usr/local/lib/aarch64-linux-gnu/` 或 `/usr/lib/aarch64-linux-gnu/`。
+
+### Q: 720x720 屏幕画面被裁剪
+
+A: 应用补丁后会等比缩放居中显示，上下加黑边，不裁剪。
 
 ## 参考资料
 

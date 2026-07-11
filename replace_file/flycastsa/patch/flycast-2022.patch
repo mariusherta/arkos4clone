@@ -257,6 +257,63 @@ index a6a9feed5..ae07f74f9 100644
  	}
  
  	u32 ReadAddressArray(u32 addr)
+diff --git a/core/rend/gles/gldraw.cpp b/core/rend/gles/gldraw.cpp
+index 3631f38a9..842c284a9 100644
+--- a/core/rend/gles/gldraw.cpp
++++ b/core/rend/gles/gldraw.cpp
+@@ -715,8 +715,8 @@ void DrawFramebuffer()
+ bool render_output_framebuffer()
+ {
+ 	glcache.Disable(GL_SCISSOR_TEST);
+-	int fx = 0;
+ 	int sx = 0;
++	int sy = 0;
+ 	float screenAR = (float)settings.display.width / settings.display.height;
+ 	int fbwidth = gl.ofbo.width;
+ 	int fbheight = gl.ofbo.height;
+@@ -724,18 +724,25 @@ bool render_output_framebuffer()
+ 		std::swap(fbwidth, fbheight);
+ 	float renderAR = (float)fbwidth / fbheight;
+ 	if (renderAR > screenAR)
+-		fx = (int)roundf((fbwidth - screenAR * fbheight) / 2.f);
++	{
++		// 画面比屏幕宽，上下加黑边
++		int scaledHeight = (int)roundf(settings.display.width / renderAR);
++		sy = (settings.display.height - scaledHeight) / 2;
++	}
+ 	else
+-		sx = (int)roundf((settings.display.width - renderAR * settings.display.height) / 2.f);
++	{
++		// 画面比屏幕高/窄，左右加黑边
++		int scaledWidth = (int)roundf(settings.display.height * renderAR);
++		sx = (settings.display.width - scaledWidth) / 2;
++	}
++
++	// 设置视口，居中显示，四周黑边
++	glViewport(sx, sy, settings.display.width - sx * 2, settings.display.height - sy * 2);
+ 
+ 	if (gl.gl_major < 3 || config::Rotate90)
+ 	{
+ 		if (gl.ofbo.tex == 0)
+ 			return false;
+-		if (sx != 0)
+-			glViewport(sx, 0, settings.display.width - sx * 2, settings.display.height);
+-		else
+-			glViewport(-fx, 0, settings.display.width + fx * 2, settings.display.height);
+ 		glBindFramebuffer(GL_FRAMEBUFFER, gl.ofbo.origFbo);
+ 		glcache.ClearColor(VO_BORDER_COL.red(), VO_BORDER_COL.green(), VO_BORDER_COL.blue(), 1.f);
+ 		glClear(GL_COLOR_BUFFER_BIT);
+@@ -752,8 +759,8 @@ bool render_output_framebuffer()
+ 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gl.ofbo.origFbo);
+ 		glcache.ClearColor(VO_BORDER_COL.red(), VO_BORDER_COL.green(), VO_BORDER_COL.blue(), 1.f);
+ 		glClear(GL_COLOR_BUFFER_BIT);
+-		glBlitFramebuffer(fx, 0, gl.ofbo.width - fx, gl.ofbo.height,
+-				sx, 0, settings.display.width - sx, settings.display.height,
++		glBlitFramebuffer(0, 0, gl.ofbo.width, gl.ofbo.height,
++				sx, sy, settings.display.width - sx, settings.display.height - sy,
+ 				GL_COLOR_BUFFER_BIT, config::TextureFiltering == 1 ? GL_NEAREST : GL_LINEAR);
+     	glBindFramebuffer(GL_FRAMEBUFFER, gl.ofbo.origFbo);
+ #endif
 diff --git a/core/rend/gui.cpp b/core/rend/gui.cpp
 index b3b8d8d62..a3102eb22 100644
 --- a/core/rend/gui.cpp
