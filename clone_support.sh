@@ -601,6 +601,15 @@ else
   safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/yabasanshiro/" 2>/dev/null
   safe sudo rm -rf "$MOUNT_DIR/root/opt/yabasanshiro/patch" 2>/dev/null
 
+  echo "== 更新 OpenborFF =="
+  safe sudo cp -a ./replace_file/OpenBor/. "$MOUNT_DIR/root/opt/OpenBor/" 2>/dev/null
+  safe sudo mkdir -p "$MOUNT_DIR/root/opt/OpenBorFF" 2>/dev/null
+  safe sudo cp -a ./replace_file/OpenBorFF/. "$MOUNT_DIR/root/opt/OpenBorFF/" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/OpenBorFF/" 2>/dev/null
+  safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/OpenBorFF/" 2>/dev/null
+  safe sudo chown -R $CHOWN_USER "$MOUNT_DIR/root/opt/OpenBor/" 2>/dev/null
+  safe sudo chmod -R 777 "$MOUNT_DIR/root/opt/OpenBor/" 2>/dev/null
+
   echo "== 处理 roms.tar =="
   if [ "$(stat -c%s $MOUNT_DIR/root/roms.tar 2>/dev/null || echo 0)" -le $((100*1024*1024)) ]; then
     echo "== 复制 roms.tar 出来操作 =="

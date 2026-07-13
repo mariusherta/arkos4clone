@@ -1833,7 +1833,13 @@
 		<fullname>OpenBOR</fullname>
 		<path>/roms/openbor/</path>
 		<extension>.pak .PAK</extension>
-		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /opt/OpenBor/OpenBor.sh %ROM%; sudo perfnorm</command>
+		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /opt/OpenBor/OpenBor.sh %EMULATOR% %ROM%; sudo perfnorm</command>
+		<emulators>
+			<emulator name="OpenBor">
+			</emulator>
+			<emulator name="OpenBorFF">
+			</emulator>
+		</emulators>
 		<platform>openbor</platform>
 		<theme>openbor</theme>
 		<manufacturer>Various</manufacturer>
@@ -4511,7 +4517,13 @@
 		<fullname>OpenBOR [SD2]</fullname>
 		<path>/roms2/openbor/</path>
 		<extension>.pak .PAK</extension>
-		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /opt/OpenBor/OpenBor.sh %ROM%; sudo perfnorm</command>
+		<command>sudo perfmax %GOVERNOR% %ROM%; nice -n -19 /opt/OpenBor/OpenBor.sh %EMULATOR% %ROM%; sudo perfnorm</command>
+		<emulators>
+			<emulator name="OpenBor">
+			</emulator>
+			<emulator name="OpenBorFF">
+			</emulator>
+		</emulators>
 		<platform>openbor</platform>
 		<theme>openbor</theme>
 		<manufacturer>Various</manufacturer>
